@@ -39,7 +39,7 @@ void deleteMatrix(int** matrix, int n) {
 }
 
 int** multiplyMatrices(int** matrix1, int** matrix2, int size) {
-    // Your matrix multiplication logic here
+    
 }
 
 int main() {
@@ -78,8 +78,7 @@ int main() {
     cout << "\nMatrix 2:\n";
     displayMatrix(M2, n2, m2);
 
-    // Matrix multiplication and other operations
-
+ 
     deleteMatrix(M1, n1);
     deleteMatrix(M2, n2);
 
