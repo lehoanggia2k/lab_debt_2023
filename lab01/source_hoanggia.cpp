@@ -38,10 +38,27 @@ void deleteMatrix(int** matrix, int n) {
     delete[] matrix;
 }
 
-int** multiplyMatrices(int** matrix1, int** matrix2, int size) {
-    
-}
+int** multiplyMatrices(int** matrix1, int** matrix2, int n1, int m1, int n2, int m2) {
+    // Test ability to multiply matrices
+    if (m1 != n2) {
+        cout << "These two matrices cannot be multiplied!";
+        return nullptr;
+    }
 
+    // Create a result matrix of appropriate size
+    int** result = createMatrix(n1, m2);
+
+    for (int i = 0; i < n1; ++i) {
+        for (int j = 0; j < m2; ++j) {
+            result[i][j] = 0;
+            for (int k = 0; k < m1; ++k) {
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
+        }
+    }
+
+    return result;
+}
 int main() {
     srand(time(NULL));
     int n1, m1, n2, m2, k;
@@ -78,6 +95,13 @@ int main() {
     cout << "\nMatrix 2:\n";
     displayMatrix(M2, n2, m2);
 
+    int** result = multiplyMatrices(M1, M2, n1, m1, n2, m2);
+
+    if (result != nullptr) {
+        cout << "\nMatrix Result:\n";
+        displayMatrix(result, n1, m2);
+        deleteMatrix(result, n1);
+    }
  
     deleteMatrix(M1, n1);
     deleteMatrix(M2, n2);
